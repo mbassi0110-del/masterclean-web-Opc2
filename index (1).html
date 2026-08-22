@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Clean — Calidad · Precio</title>
+<meta name="description" content="Productos de limpieza a granel, mayoreo y menudeo para cocina, baño, auto, casa y oficina. Pide por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2A38;
+    --navy-2:#233647;
+    --lime:#C4E100;
+    --tag:#FF6B4A;
+    --paper:#FAF9F6;
+    --ink:#1B2A38;
+    --muted:#6b7684;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{ font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; letter-spacing:0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff;
+    border-bottom:3px solid var(--lime);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo{ font-family:'Big Shoulders Display'; font-weight:900; font-size:22px; letter-spacing:0.02em; text-transform:uppercase; }
+  .logo span{ color:var(--lime); }
+  .nav-links{ display:flex; gap:28px; font-size:14px; font-weight:600; }
+  .nav-links a{ text-decoration:none; opacity:.85; transition:opacity .2s; }
+  .nav-links a:hover{ opacity:1; color:var(--lime); }
+  .nav-cta{
+    background:var(--lime); color:var(--navy); font-weight:700; font-size:13px;
+    padding:9px 16px; border-radius:4px; text-decoration:none;
+  }
+  @media(max-width:720px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--navy); color:#fff; position:relative; overflow:hidden;
+    padding:90px 0 110px;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image: repeating-linear-gradient(135deg, rgba(196,225,0,0.045) 0 2px, transparent 2px 26px);
+  }
+  .hero .wrap{ position:relative; display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center; }
+  @media(max-width:860px){ .hero .wrap{ grid-template-columns:1fr; } }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600;
+    color:var(--lime); border:1px solid rgba(196,225,0,.4); padding:6px 12px; border-radius:99px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{ content:"●"; font-size:8px; }
+  h1{
+    font-family:'Big Shoulders Display'; font-weight:900;
+    font-size:clamp(46px, 7vw, 84px); line-height:0.92; letter-spacing:0.01em;
+  }
+  h1 .accent{ color:var(--lime); }
+  .hero p.lead{ margin-top:22px; font-size:18px; color:#c8d0d8; max-width:480px; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-weight:700; font-size:15px; padding:14px 26px; border-radius:6px;
+    text-decoration:none; transition:transform .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--lime); color:var(--navy); }
+  .btn-ghost{ border:1.5px solid rgba(255,255,255,.35); color:#fff; }
+
+  /* hanging price tag — signature element */
+  .tag-hero{
+    position:relative; justify-self:center;
+    background:#fff; color:var(--navy); border-radius:10px;
+    width:230px; padding:26px 22px 22px; text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+    transform:rotate(6deg);
+  }
+  .tag-hero::before{
+    content:""; position:absolute; top:-38px; left:50%; transform:translateX(-50%);
+    width:2px; height:40px; background:rgba(255,255,255,.5);
+  }
+  .tag-hero::after{
+    content:""; position:absolute; top:16px; left:16px;
+    width:14px; height:14px; border-radius:50%; background:var(--paper); border:2px solid var(--navy);
+  }
+  .tag-hero .label{ font-family:'IBM Plex Mono'; font-size:11px; color:var(--muted); margin-top:6px; }
+  .tag-hero .price{ font-family:'Big Shoulders Display'; font-weight:900; font-size:52px; color:var(--tag); line-height:1; margin:8px 0; }
+  .tag-hero .sub{ font-family:'Big Shoulders Display'; font-weight:700; font-size:15px; letter-spacing:.03em; }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-wrap{ background:var(--lime); overflow:hidden; padding:10px 0; }
+  .marquee{ display:flex; gap:40px; white-space:nowrap; animation:scroll 22s linear infinite; }
+  .marquee span{ font-family:'IBM Plex Mono'; font-weight:600; font-size:13px; color:var(--navy); }
+  @keyframes scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:80px 0; }
+  .section-head{ margin-bottom:44px; max-width:640px; }
+  .section-eyebrow{ font-family:'IBM Plex Mono'; font-size:12px; font-weight:600; color:var(--tag); letter-spacing:.04em; }
+  h2{ font-family:'Big Shoulders Display'; font-weight:900; font-size:clamp(32px,4vw,46px); margin-top:8px; }
+  .section-head p{ color:var(--muted); margin-top:12px; font-size:16px; }
+
+  /* how it works */
+  .how-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media(max-width:820px){ .how-grid{ grid-template-columns:1fr; } }
+  .how-card{ background:#fff; border:1.5px solid #E7E4DD; border-radius:10px; padding:26px; }
+  .how-card .num{ font-family:'Big Shoulders Display'; font-weight:900; font-size:34px; color:var(--lime); -webkit-text-stroke:1.5px var(--navy); }
+  .how-card h3{ font-family:'Big Shoulders Display'; font-weight:700; font-size:20px; margin-top:10px; text-transform:uppercase; }
+  .how-card p{ color:var(--muted); font-size:14.5px; margin-top:8px; }
+
+  /* catalog */
+  .cat-nav{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px; }
+  .cat-chip{
+    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600;
+    border:1.5px solid var(--navy); color:var(--navy); padding:8px 14px; border-radius:99px;
+    background:transparent; cursor:pointer; transition:all .15s;
+  }
+  .cat-chip.active, .cat-chip:hover{ background:var(--navy); color:#fff; }
+
+  .category-block{ margin-bottom:52px; }
+  .category-title{
+    font-family:'Big Shoulders Display'; font-weight:900; font-size:26px;
+    display:flex; align-items:center; gap:14px; margin-bottom:22px;
+  }
+  .category-title::after{ content:""; flex:1; height:2px; background:#E7E4DD; }
+
+  .product-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:18px; }
+  .ptag{
+    position:relative; background:#fff; border:1.5px solid #E7E4DD; border-radius:8px;
+    padding:20px 16px 16px; transition:box-shadow .15s, transform .15s;
+  }
+  .ptag:hover{ box-shadow:0 10px 24px rgba(27,42,56,.1); transform:translateY(-3px); }
+  .ptag::before{
+    content:""; position:absolute; top:10px; right:10px;
+    width:9px; height:9px; border-radius:50%; background:var(--paper); border:1.5px solid #cfd4d0;
+  }
+  .ptag .pname{ font-weight:600; font-size:14.5px; padding-right:14px; min-height:38px; }
+  .ptag .pprice{ font-family:'IBM Plex Mono'; font-weight:600; font-size:19px; color:var(--tag); margin-top:12px; }
+  .ptag .pprice.consult{ color:var(--muted); font-size:13px; font-style:italic; }
+  .ptag .pmayoreo{ font-size:11px; color:var(--muted); margin-top:2px; }
+
+  /* mayoreo/menudeo band */
+  .band{ background:var(--navy); color:#fff; padding:60px 0; }
+  .band-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  @media(max-width:820px){ .band-grid{ grid-template-columns:1fr; } }
+  .band h2{ color:#fff; }
+  .band .section-eyebrow{ color:var(--lime); }
+  .band p{ color:#c8d0d8; margin-top:14px; font-size:15.5px; }
+  .band-card{ background:var(--navy-2); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:26px; }
+  .band-card .row{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed rgba(255,255,255,.15); font-size:14.5px; }
+  .band-card .row:last-child{ border-bottom:none; }
+  .band-card .row b{ font-family:'IBM Plex Mono'; color:var(--lime); }
+
+  /* delivery / hours */
+  .info-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media(max-width:820px){ .info-grid{ grid-template-columns:1fr; } }
+  .info-card{ text-align:center; padding:28px 20px; }
+  .info-card .icon{ font-size:30px; margin-bottom:12px; }
+  .info-card h3{ font-family:'Big Shoulders Display'; font-weight:700; font-size:18px; text-transform:uppercase; }
+  .info-card p{ color:var(--muted); font-size:14.5px; margin-top:6px; }
+
+  /* footer CTA */
+  .cta-final{ background:var(--lime); text-align:center; padding:70px 24px; }
+  .cta-final h2{ color:var(--navy); }
+  .cta-final p{ color:var(--navy-2); margin-top:10px; font-size:16px; }
+  .cta-final .btn-primary{ background:var(--navy); color:#fff; margin-top:26px; }
+
+  footer{ background:var(--navy); color:#8f9aa6; padding:34px 0; font-size:13px; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  footer b{ color:#fff; }
+
+  .wa-float{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:var(--lime); color:var(--navy); width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:26px;
+    box-shadow:0 10px 24px rgba(0,0,0,.25); text-decoration:none;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Master<span>Clean</span></div>
+    <div class="nav-links">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#mayoreo">Mayoreo</a>
+      <a href="#info">Horarios</a>
+    </div>
+    <a class="nav-cta" id="nav-wa" href="#" target="_blank">Pedir por WhatsApp</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">A granel · Mayoreo · Menudeo</div>
+      <h1>Limpieza<br>al mejor <span class="accent">precio.</span></h1>
+      <p class="lead">Productos de limpieza para cocina, baño, auto, casa y oficina. Materia prima a granel para quien produce, y menudeo para quien solo necesita lo de hoy.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" id="hero-wa" href="#" target="_blank">💬 Pedir por WhatsApp</a>
+        <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
+      </div>
+    </div>
+    <div class="tag-hero">
+      <div class="label">MASTER CLEAN</div>
+      <div class="price">-33%</div>
+      <div class="sub">Comprando<br>a mayoreo</div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee"></div>
+</div>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Cómo funciona</div>
+      <h2>Pedir es así de simple</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="num">01</div>
+        <h3>Revisa el catálogo</h3>
+        <p>Elige tus productos y cantidades. Precio de menudeo o de mayoreo, tú decides.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">02</div>
+        <h3>Escribe por WhatsApp</h3>
+        <p>Un clic te abre el chat con tu pedido listo para confirmar. Te contestamos al momento.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">03</div>
+        <h3>Recoge o recibe</h3>
+        <p>Pasa por tu pedido a la tienda o pídelo a domicilio. Tú eliges.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo" style="background:#fff; border-top:1.5px solid #E7E4DD; border-bottom:1.5px solid #E7E4DD;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Catálogo</div>
+      <h2>Todo lo que necesitas para limpiar</h2>
+      <p>Precios de menudeo. ¿Compras en volumen? Ve la sección de mayoreo más abajo.</p>
+    </div>
+    <div class="cat-nav" id="cat-nav"></div>
+    <div id="catalog-container"></div>
+  </div>
+</section>
+
+<section id="mayoreo" class="band">
+  <div class="wrap band-grid">
+    <div>
+      <div class="section-eyebrow">Mayoreo</div>
+      <h2>¿Compras para revender?</h2>
+      <p>A partir de <b style="color:var(--lime)">12 unidades</b> por producto accedes a precio de mayoreo. Ideal para tienditas, estéticas, talleres, hoteles y limpieza institucional.</p>
+      <p>¿Necesitas materia prima a granel para envasar tú mismo? Escríbenos y armamos tu pedido a la medida.</p>
+      <a class="btn btn-primary" style="margin-top:24px;" id="band-wa" href="#" target="_blank">💬 Cotizar mayoreo</a>
+    </div>
+    <div class="band-card">
+      <div class="row"><span>Menudeo</span> <b>1–11 unidades</b></div>
+      <div class="row"><span>Mayoreo</span> <b>12+ unidades</b></div>
+      <div class="row"><span>Granel / materia prima</span> <b>Cotización directa</b></div>
+      <div class="row"><span>Entrega</span> <b>Tienda o domicilio</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Información</div>
+      <h2>Horarios y entrega</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="icon">🕒</div>
+        <h3>Horario</h3>
+        <p>Lunes a sábado<br>9:00 am – 7:00 pm</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">🏬</div>
+        <h3>Recoger en tienda</h3>
+        <p>Confirmas por WhatsApp<br>y pasas cuando gustes</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">🚚</div>
+        <h3>A domicilio</h3>
+        <p>Preguntamos tu zona<br>por WhatsApp</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-final">
+  <h2>¿Ya sabes qué necesitas?</h2>
+  <p>Escríbenos y te ayudamos a armar tu pedido en minutos.</p>
+  <a class="btn btn-primary" id="final-wa" href="#" target="_blank">💬 Pedir por WhatsApp</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div><b>Master Clean</b> — Calidad · Precio</div>
+    <div>Productos de limpieza a granel, mayoreo y menudeo</div>
+  </div>
+</footer>
+
+<a class="wa-float" id="float-wa" href="#" target="_blank" aria-label="Pedir por WhatsApp">💬</a>
+
+<script>
+/* ============ CONFIG ============ */
+// ⚠️ Reemplaza con tu número real, formato 521XXXXXXXXXX (52 + 1 + 10 dígitos en México)
+const WHATSAPP_NUMBER = "5212713130359";
+const WA_MESSAGE = encodeURIComponent("Hola Master Clean, quiero hacer un pedido 🧽");
+
+document.querySelectorAll('#nav-wa,#hero-wa,#band-wa,#final-wa,#float-wa').forEach(el=>{
+  el.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE}`;
+});
+
+/* ============ DATA ============ */
+// precio = null significa "Consultar precio". mayoreoDesc = descuento en $ para mayoreo (debe reflejar tu Excel).
+const CATALOG = {
+"Jabón / Ropa": [
+  ["Más oscura",24,5],["Ariel plus",24,5],["Más color",24,5],["Burbujas",24,5],
+  ["Vel rosita",24,5],["Roma",24,5],["Zote",24,5],["Desmugrante",24,5]
+],
+"Suavizante": [
+  ["Downy",15,5],["Queen",15,5],["Carisma",15,5],["Fantasías",null,null],
+  ["Stefano",15,5],["Primavera",null,null],["Bebé",15,5]
+],
+"Fabuloso": [
+  ["Lavanda plus",12,5],["Lavanda",10,5],["Bebé",12,5],["Lima limón",12,5],
+  ["Mar fresco",10,5],["Violeta",10,5],["Chicle",10,5],["Frutas",12,5],["Canela",10,5]
+],
+"Cocina": [
+  ["Desengrasante",24,5],["Kitacochambre",18,5],["Fibras grandes",10,5],
+  ["Fibras aluminio",8,5],["Esponjas con verde",12,5],["Estropajos",10,5],["Trapos de limpieza",15,5]
+],
+"Variedad": [
+  ["Creolina",null,null],["Pastillas de hipoclorito (3x)",15,5],["Glicerina",null,null],
+  ["Aromatizantes",30,5],["Pinol repelente",18,5],["Pinol",12,5],["Pinol lavanda",18,5],
+  ["Espumoso",12,5],["Shampoo mascotas",30,5],["Garrapaticida",18,5],["Gel antibacterial",null,null],
+  ["Insecticida",30,5],["Limpia cristales",18,5],["Limpia aluminio",40,5],["Repelente",30,5],
+  ["Sanitizante",30,5],["Shampoo de manos uva",24,5],["Shampoo de manos manzana",24,5],
+  ["Shampoo de manos fresa",24,5],["Shampoo de manos coco",24,5],["Shampoo de manos chicle",24,5],
+  ["Shampoo de cabello Pantene",null,null],["Vanish",16,5],["Cloro",6,5],
+  ["Reforzador (Downy/Channel/Carisma)",80,8]
+],
+"Escobas / Mechudos": [
+  ["Cubeta cilíndrica 13L",null,null],["Cubeta exprimidora",null,null],["Escoba abanico perico",null,null],
+  ["Escoba abanico plus",null,null],["Cepillo multiusos",null,null],["Cepillo de piso",null,null],
+  ["Escoba veneciana ideal",null,null],["Escoba veneciana colores",null,null],["Escoba shaly super fina",null,null],
+  ["Escoba moño ideal",null,null],["Escoba abanico italiana",null,null],["Fibra espiral",10,3],
+  ["Jalador jumbo 40cm",null,null],["Recogedor de plástico",35,5],["Bomba negra mediana",35,5],
+  ["Escoba jardinera metal",null,null],["Mechudo magital grande",null,null],["Pinza económica",35,5],
+  ["Jerga 90x60",22,5],["Tendedero cáñamo café",20,5],["Trapeador microfibra económico",75,8],
+  ["Trapeador Venecia",75,8],["Trapeador Golden",75,8],["Trapeador abanico ideal chico-med.",52,5],
+  ["Trapeador económico c/cepillo",null,null],["Trapeador Venecia arcoíris",65,5],["Trapeador Mega",65,5],
+  ["Trapeador Magite",50,5],["Trapeador microfibra",75,8],["Cepillo duro",75,8],["Cepillo semiduro",50,5]
+]
+};
+
+/* ============ RENDER ============ */
+const container = document.getElementById('catalog-container');
+const catNav = document.getElementById('cat-nav');
+const marquee = document.getElementById('marquee');
+
+const marqueeItems = Object.keys(CATALOG).map(c=>`★ ${c.toUpperCase()}`).join(' &nbsp; ');
+marquee.innerHTML = `<span>${marqueeItems} &nbsp; ${marqueeItems}</span>`;
+
+Object.entries(CATALOG).forEach(([cat, items], i)=>{
+  const id = 'cat-' + i;
+  const chip = document.createElement('button');
+  chip.className = 'cat-chip' + (i===0 ? ' active' : '');
+  chip.textContent = cat;
+  chip.onclick = ()=>{
+    document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+  };
+  catNav.appendChild(chip);
+
+  const block = document.createElement('div');
+  block.className = 'category-block';
+  block.id = id;
+  block.innerHTML = `<div class="category-title">${cat}</div><div class="product-grid"></div>`;
+  const grid = block.querySelector('.product-grid');
+
+  items.forEach(([name, price, desc])=>{
+    const card = document.createElement('div');
+    card.className = 'ptag';
+    if(price === null){
+      card.innerHTML = `<div class="pname">${name}</div><div class="pprice consult">Consultar precio</div>`;
+    } else {
+      const mayoreo = price - desc;
+      card.innerHTML = `<div class="pname">${name}</div><div class="pprice">$${price}</div><div class="pmayoreo">Mayoreo (12+): $${mayoreo}</div>`;
+    }
+    grid.appendChild(card);
+  });
+  container.appendChild(block);
+});
+</script>
+</body>
+</html>
